@@ -459,4 +459,7 @@ import './contrib/claudeAgents/browser/claudeAgents.contribution.js';
 // Claude MCP Servers
 import './contrib/claudeMcp/browser/claudeMcp.contribution.js';
 
+// Claude Hooks System
+import './contrib/claudeHooks/browser/claudeHooks.contribution.js';
+
 //#endregion
