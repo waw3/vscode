@@ -432,4 +432,7 @@ import './contrib/opener/browser/opener.contribution.js';
 // Nova Split Sidebar
 import './contrib/splitSidebar/browser/splitSidebar.contribution.js';
 
+// Nova Project Panel
+import './contrib/novaProject/browser/novaProject.contribution.js';
+
 //#endregion

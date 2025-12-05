@@ -1,0 +1,354 @@
+/*---------------------------------------------------------------------------------------------
+ *  Nova Project Panel Styles
+ *--------------------------------------------------------------------------------------------*/
+
+/* ============================================
+   Project Overview View
+   ============================================ */
+
+.nova-project-view {
+	padding: 12px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+/* Empty State */
+.nova-project-empty {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 32px 16px;
+	text-align: center;
+}
+
+.nova-project-empty-icon {
+	font-size: 48px;
+	opacity: 0.3;
+	margin-bottom: 16px;
+}
+
+.nova-project-empty-message {
+	font-size: 14px;
+	font-weight: 500;
+	margin-bottom: 8px;
+	opacity: 0.8;
+}
+
+.nova-project-empty-hint {
+	font-size: 12px;
+	opacity: 0.5;
+}
+
+/* Project Header */
+.nova-project-header {
+	display: flex;
+	align-items: center;
+	padding: 12px;
+	background-color: rgba(128, 128, 128, 0.08);
+	border-radius: 8px;
+	margin-bottom: 16px;
+}
+
+.nova-project-icon {
+	font-size: 32px;
+	margin-right: 12px;
+	opacity: 0.8;
+}
+
+.nova-project-title-container {
+	flex: 1;
+	min-width: 0;
+}
+
+.nova-project-title {
+	font-size: 14px;
+	font-weight: 600;
+	margin-bottom: 2px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.nova-project-path {
+	font-size: 11px;
+	opacity: 0.6;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* Sections */
+.nova-project-section {
+	margin-bottom: 16px;
+}
+
+.nova-project-section-title {
+	font-size: 10px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	opacity: 0.5;
+	margin-bottom: 8px;
+	padding-left: 4px;
+}
+
+/* Info List */
+.nova-project-info-list {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.nova-project-info-item {
+	display: flex;
+	align-items: center;
+	padding: 6px 8px;
+	border-radius: 6px;
+	transition: background-color 0.15s ease-out;
+}
+
+.nova-project-info-item:hover {
+	background-color: rgba(128, 128, 128, 0.1);
+}
+
+.nova-project-info-icon {
+	width: 20px;
+	height: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: 8px;
+	opacity: 0.7;
+	font-size: 14px;
+}
+
+.nova-project-info-label {
+	flex: 1;
+	font-size: 12px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.nova-project-info-value {
+	font-size: 11px;
+	opacity: 0.6;
+	max-width: 120px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-align: right;
+}
+
+/* ============================================
+   Quick Actions View
+   ============================================ */
+
+.nova-quick-actions-view {
+	padding: 8px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.nova-quick-actions-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+	gap: 8px;
+}
+
+.nova-quick-action {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 12px 8px;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: background-color 0.15s ease-out, transform 0.1s ease-out;
+	text-align: center;
+}
+
+.nova-quick-action:hover {
+	background-color: rgba(128, 128, 128, 0.15);
+}
+
+.nova-quick-action:active {
+	transform: scale(0.95);
+}
+
+.nova-quick-action:focus {
+	outline: 2px solid var(--vscode-focusBorder);
+	outline-offset: -2px;
+}
+
+.nova-quick-action-icon {
+	font-size: 20px;
+	margin-bottom: 6px;
+	opacity: 0.8;
+}
+
+.nova-quick-action:hover .nova-quick-action-icon {
+	opacity: 1;
+}
+
+.nova-quick-action-label {
+	font-size: 10px;
+	font-weight: 500;
+	opacity: 0.8;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 100%;
+}
+
+/* ============================================
+   Recent Files View
+   ============================================ */
+
+.nova-recent-files-view {
+	padding: 8px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.nova-recent-files-empty {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 24px 16px;
+	text-align: center;
+}
+
+.nova-recent-files-empty-icon {
+	font-size: 32px;
+	opacity: 0.3;
+	margin-bottom: 12px;
+}
+
+.nova-recent-files-empty-message {
+	font-size: 12px;
+	font-weight: 500;
+	margin-bottom: 4px;
+	opacity: 0.8;
+}
+
+.nova-recent-files-empty-hint {
+	font-size: 11px;
+	opacity: 0.5;
+}
+
+.nova-recent-files-list {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+.nova-recent-file-item {
+	display: flex;
+	align-items: center;
+	padding: 6px 8px;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: background-color 0.15s ease-out;
+}
+
+.nova-recent-file-item:hover {
+	background-color: rgba(128, 128, 128, 0.15);
+}
+
+.nova-recent-file-item:focus {
+	outline: 2px solid var(--vscode-focusBorder);
+	outline-offset: -2px;
+}
+
+.nova-recent-file-icon {
+	width: 20px;
+	height: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: 8px;
+	opacity: 0.7;
+	font-size: 14px;
+}
+
+.nova-recent-file-info {
+	flex: 1;
+	min-width: 0;
+}
+
+.nova-recent-file-name {
+	font-size: 12px;
+	font-weight: 500;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.nova-recent-file-path {
+	font-size: 10px;
+	opacity: 0.5;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* ============================================
+   Nova Theme Enhancements
+   ============================================ */
+
+.monaco-workbench.nova-theme .nova-project-header {
+	background-color: rgba(128, 128, 128, 0.06);
+	border: 1px solid rgba(128, 128, 128, 0.1);
+}
+
+.monaco-workbench.nova-theme .nova-quick-action {
+	background-color: rgba(128, 128, 128, 0.04);
+	border: 1px solid rgba(128, 128, 128, 0.08);
+}
+
+.monaco-workbench.nova-theme .nova-quick-action:hover {
+	background-color: rgba(128, 128, 128, 0.12);
+	border-color: rgba(128, 128, 128, 0.15);
+}
+
+/* Dark theme adjustments */
+.monaco-workbench.vs-dark .nova-project-section-title {
+	color: rgba(255, 255, 255, 0.5);
+}
+
+.monaco-workbench.vs-dark .nova-project-info-value {
+	color: rgba(255, 255, 255, 0.5);
+}
+
+/* Light theme adjustments */
+.monaco-workbench.vs .nova-project-section-title {
+	color: rgba(0, 0, 0, 0.5);
+}
+
+.monaco-workbench.vs .nova-project-info-value {
+	color: rgba(0, 0, 0, 0.5);
+}
+
+/* Animation for loading spinner */
+.nova-project-info-icon.codicon-modifier-spin {
+	animation: nova-spin 1s linear infinite;
+}
+
+@keyframes nova-spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* Responsive adjustments */
+@media (max-width: 250px) {
+	.nova-quick-actions-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
