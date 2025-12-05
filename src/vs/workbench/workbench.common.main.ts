@@ -453,4 +453,7 @@ import './contrib/claudeMemory/browser/claudeMemory.contribution.js';
 // Claude Slash Commands
 import './contrib/claudeCommands/browser/claudeCommands.contribution.js';
 
+// Claude Agents & Subagents
+import './contrib/claudeAgents/browser/claudeAgents.contribution.js';
+
 //#endregion

@@ -1,0 +1,719 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+/* ============================================
+   Claude Agents - Browser View
+   ============================================ */
+
+.claude-agents-browser-view {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	padding: 0;
+}
+
+.claude-agents-header {
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+	padding: 16px;
+	background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+	color: white;
+}
+
+.claude-agents-header .header-content {
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+}
+
+.claude-agents-header .codicon {
+	font-size: 24px;
+	opacity: 0.9;
+}
+
+.claude-agents-header .header-text {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.claude-agents-header .header-text strong {
+	font-size: 14px;
+}
+
+.claude-agents-header .header-text span {
+	font-size: 11px;
+	opacity: 0.85;
+}
+
+.claude-agents-toolbar {
+	display: flex;
+	gap: 8px;
+	padding: 12px;
+	border-bottom: 1px solid var(--vscode-panel-border);
+}
+
+.claude-agents-btn {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	padding: 6px 12px;
+	border: 1px solid var(--vscode-panel-border);
+	border-radius: 6px;
+	background: transparent;
+	color: var(--vscode-foreground);
+	font-size: 12px;
+	cursor: pointer;
+	transition: all 0.15s ease;
+}
+
+.claude-agents-btn:hover {
+	background: var(--vscode-toolbar-hoverBackground);
+}
+
+.claude-agents-btn.primary {
+	background: var(--vscode-button-background);
+	color: var(--vscode-button-foreground);
+	border-color: transparent;
+}
+
+.claude-agents-btn.primary:hover {
+	background: var(--vscode-button-hoverBackground);
+}
+
+.claude-agents-list {
+	flex: 1;
+	overflow-y: auto;
+	padding: 8px 0;
+}
+
+.claude-agent-section {
+	margin-bottom: 16px;
+}
+
+.claude-agent-section-header,
+.claude-agents-section-header {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 16px;
+	font-size: 11px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	color: var(--vscode-sideBarSectionHeader-foreground);
+	background: var(--vscode-sideBarSectionHeader-background);
+}
+
+.claude-agent-item {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 10px 16px;
+	cursor: pointer;
+	transition: background-color 0.15s ease;
+}
+
+.claude-agent-item:hover {
+	background: var(--vscode-list-hoverBackground);
+}
+
+.claude-agent-icon {
+	width: 32px;
+	height: 32px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 8px;
+	background: var(--vscode-textBlockQuote-background);
+	color: var(--vscode-terminal-ansiGreen);
+}
+
+.claude-agent-info {
+	flex: 1;
+	min-width: 0;
+}
+
+.claude-agent-name {
+	font-size: 12px;
+	font-weight: 500;
+	color: var(--vscode-foreground);
+}
+
+.claude-agent-desc {
+	font-size: 11px;
+	color: var(--vscode-descriptionForeground);
+	margin-top: 2px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.claude-agent-tools {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+	margin-top: 6px;
+}
+
+.claude-agent-tools .tool-tag {
+	padding: 2px 6px;
+	font-size: 10px;
+	font-weight: 500;
+	border-radius: 4px;
+	background: var(--vscode-badge-background);
+	color: var(--vscode-badge-foreground);
+}
+
+.claude-agent-actions {
+	display: flex;
+	gap: 4px;
+	opacity: 0;
+	transition: opacity 0.15s ease;
+}
+
+.claude-agent-item:hover .claude-agent-actions {
+	opacity: 1;
+}
+
+.claude-agent-action {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 24px;
+	height: 24px;
+	border: none;
+	border-radius: 4px;
+	background: transparent;
+	color: var(--vscode-foreground);
+	cursor: pointer;
+	transition: all 0.15s ease;
+}
+
+.claude-agent-action:hover {
+	background: var(--vscode-toolbar-hoverBackground);
+}
+
+.claude-agent-action.primary {
+	background: var(--vscode-button-background);
+	color: var(--vscode-button-foreground);
+}
+
+.claude-agent-action.primary:hover {
+	background: var(--vscode-button-hoverBackground);
+}
+
+.claude-agent-action.danger:hover {
+	background: var(--vscode-inputValidation-errorBackground);
+	color: var(--vscode-errorForeground);
+}
+
+/* Empty state */
+.claude-agents-empty {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 40px 20px;
+	text-align: center;
+	color: var(--vscode-descriptionForeground);
+}
+
+.claude-agents-empty .codicon {
+	font-size: 32px;
+	opacity: 0.5;
+}
+
+.claude-agents-empty .hint {
+	font-size: 11px;
+	opacity: 0.7;
+}
+
+/* Templates section */
+.claude-agents-templates {
+	border-top: 1px solid var(--vscode-panel-border);
+	padding-top: 8px;
+}
+
+.claude-agents-templates-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 8px;
+	padding: 12px;
+}
+
+.claude-agent-template-card {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	padding: 12px;
+	border: 1px solid var(--vscode-panel-border);
+	border-radius: 8px;
+	background: var(--vscode-editor-background);
+	cursor: pointer;
+	transition: all 0.15s ease;
+}
+
+.claude-agent-template-card:hover {
+	border-color: var(--vscode-focusBorder);
+	background: var(--vscode-list-hoverBackground);
+}
+
+.claude-agent-template-card .template-icon {
+	width: 32px;
+	height: 32px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 8px;
+	background: var(--vscode-textBlockQuote-background);
+	color: var(--vscode-terminal-ansiGreen);
+}
+
+.claude-agent-template-card .template-name {
+	font-size: 12px;
+	font-weight: 500;
+}
+
+.claude-agent-template-card .template-desc {
+	font-size: 10px;
+	color: var(--vscode-descriptionForeground);
+	line-height: 1.4;
+}
+
+/* ============================================
+   Claude Agents - Editor View
+   ============================================ */
+
+.claude-agents-editor-view {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.claude-agents-editor-header {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 12px 16px;
+	font-weight: 500;
+	border-bottom: 1px solid var(--vscode-panel-border);
+}
+
+.claude-agents-editor-form {
+	flex: 1;
+	overflow-y: auto;
+	padding: 16px;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.claude-agents-field {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.claude-agents-field label {
+	font-size: 11px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	color: var(--vscode-foreground);
+}
+
+.claude-agents-field input,
+.claude-agents-field textarea.description-input {
+	padding: 8px 12px;
+	border: 1px solid var(--vscode-input-border);
+	border-radius: 6px;
+	background: var(--vscode-input-background);
+	color: var(--vscode-input-foreground);
+	font-size: 13px;
+}
+
+.claude-agents-field input:focus,
+.claude-agents-field textarea:focus {
+	outline: none;
+	border-color: var(--vscode-focusBorder);
+}
+
+/* Tools grid */
+.claude-agents-tools-grid {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.claude-agents-tool-category {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.claude-agents-tool-category .category-header {
+	font-size: 10px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	color: var(--vscode-descriptionForeground);
+}
+
+.claude-agents-tool-category .category-tools {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+}
+
+.claude-agents-tool-item {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	padding: 4px 8px;
+	border: 1px solid var(--vscode-panel-border);
+	border-radius: 4px;
+	background: var(--vscode-editor-background);
+}
+
+.claude-agents-tool-item input[type="checkbox"] {
+	margin: 0;
+}
+
+.claude-agents-tool-item label {
+	display: flex;
+	flex-direction: column;
+	cursor: pointer;
+}
+
+.claude-agents-tool-item .tool-name {
+	font-size: 11px;
+	font-weight: 500;
+}
+
+.claude-agents-tool-item .tool-desc {
+	font-size: 9px;
+	color: var(--vscode-descriptionForeground);
+}
+
+/* Presets */
+.claude-agents-presets {
+	display: flex;
+	gap: 8px;
+	margin-top: 8px;
+}
+
+.claude-agents-preset-btn {
+	padding: 4px 10px;
+	border: 1px solid var(--vscode-panel-border);
+	border-radius: 4px;
+	background: transparent;
+	color: var(--vscode-foreground);
+	font-size: 11px;
+	cursor: pointer;
+	transition: all 0.15s ease;
+}
+
+.claude-agents-preset-btn:hover {
+	background: var(--vscode-toolbar-hoverBackground);
+}
+
+/* Content editor */
+.claude-agents-field.full-height {
+	flex: 1;
+	min-height: 200px;
+}
+
+.claude-agents-content-wrapper {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid var(--vscode-input-border);
+	border-radius: 6px;
+	overflow: hidden;
+}
+
+.claude-agents-content-toolbar {
+	display: flex;
+	gap: 4px;
+	padding: 6px 8px;
+	background: var(--vscode-toolbar-hoverBackground);
+	border-bottom: 1px solid var(--vscode-panel-border);
+}
+
+.claude-agents-insert-btn {
+	padding: 4px 8px;
+	border: none;
+	border-radius: 4px;
+	background: transparent;
+	color: var(--vscode-textLink-foreground);
+	font-size: 11px;
+	font-family: var(--vscode-editor-font-family);
+	cursor: pointer;
+}
+
+.claude-agents-insert-btn:hover {
+	background: var(--vscode-list-hoverBackground);
+}
+
+.claude-agents-textarea {
+	flex: 1;
+	width: 100%;
+	padding: 12px;
+	border: none;
+	background: var(--vscode-input-background);
+	color: var(--vscode-input-foreground);
+	font-family: var(--vscode-editor-font-family);
+	font-size: 12px;
+	line-height: 1.5;
+	resize: none;
+	outline: none;
+}
+
+.claude-agents-textarea::placeholder {
+	color: var(--vscode-input-placeholderForeground);
+}
+
+/* Preview panel */
+.claude-agents-preview {
+	border-top: 1px solid var(--vscode-panel-border);
+	background: var(--vscode-editor-background);
+	max-height: 200px;
+}
+
+.claude-agents-preview-header {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 12px;
+	font-size: 11px;
+	font-weight: 500;
+	background: var(--vscode-sideBarSectionHeader-background);
+	border-bottom: 1px solid var(--vscode-panel-border);
+}
+
+.claude-agents-preview-content {
+	margin: 0;
+	padding: 12px;
+	font-size: 11px;
+	font-family: var(--vscode-editor-font-family);
+	line-height: 1.5;
+	overflow: auto;
+	max-height: 150px;
+	white-space: pre-wrap;
+}
+
+/* Editor actions */
+.claude-agents-editor-actions {
+	display: flex;
+	gap: 8px;
+	padding: 12px 16px;
+	border-top: 1px solid var(--vscode-panel-border);
+}
+
+/* ============================================
+   Claude Agents - Tools View
+   ============================================ */
+
+.claude-agents-tools-view {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.claude-tools-header {
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+	padding: 16px;
+	background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+	color: white;
+}
+
+.claude-tools-header .header-content {
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+}
+
+.claude-tools-header .codicon {
+	font-size: 24px;
+	opacity: 0.9;
+}
+
+.claude-tools-header .header-text {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.claude-tools-header .header-text strong {
+	font-size: 14px;
+}
+
+.claude-tools-header .header-text span {
+	font-size: 11px;
+	opacity: 0.85;
+}
+
+.claude-tools-quick-actions {
+	display: flex;
+	gap: 8px;
+	padding: 12px;
+	border-bottom: 1px solid var(--vscode-panel-border);
+}
+
+.claude-tools-btn {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	padding: 6px 10px;
+	border: 1px solid var(--vscode-panel-border);
+	border-radius: 6px;
+	background: transparent;
+	color: var(--vscode-foreground);
+	font-size: 11px;
+	cursor: pointer;
+	transition: all 0.15s ease;
+}
+
+.claude-tools-btn:hover {
+	background: var(--vscode-toolbar-hoverBackground);
+}
+
+.claude-tools-list {
+	flex: 1;
+	overflow-y: auto;
+	padding: 8px 0;
+}
+
+.claude-tools-section {
+	margin-bottom: 12px;
+}
+
+.claude-tools-section-header {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 16px;
+	font-size: 11px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	color: var(--vscode-sideBarSectionHeader-foreground);
+	background: var(--vscode-sideBarSectionHeader-background);
+}
+
+.claude-tool-item {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 10px 16px;
+	transition: all 0.15s ease;
+}
+
+.claude-tool-item.disabled {
+	opacity: 0.5;
+}
+
+.claude-tool-item:hover {
+	background: var(--vscode-list-hoverBackground);
+}
+
+.claude-tool-icon {
+	width: 32px;
+	height: 32px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 8px;
+	background: var(--vscode-textBlockQuote-background);
+	color: var(--vscode-terminal-ansiYellow);
+}
+
+.claude-tool-info {
+	flex: 1;
+	min-width: 0;
+}
+
+.claude-tool-name {
+	font-size: 12px;
+	font-weight: 500;
+	color: var(--vscode-foreground);
+}
+
+.claude-tool-desc {
+	font-size: 11px;
+	color: var(--vscode-descriptionForeground);
+	margin-top: 2px;
+}
+
+.claude-tool-risk {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	margin-top: 4px;
+	padding: 2px 6px;
+	border-radius: 4px;
+	font-size: 10px;
+	font-weight: 500;
+	background: var(--vscode-inputValidation-warningBackground);
+	color: var(--vscode-inputValidation-warningForeground);
+}
+
+.claude-tool-controls {
+	display: flex;
+	gap: 16px;
+}
+
+.claude-tool-toggle {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.claude-tool-toggle input[type="checkbox"] {
+	margin: 0;
+}
+
+.claude-tool-toggle label {
+	font-size: 11px;
+	color: var(--vscode-descriptionForeground);
+	cursor: pointer;
+}
+
+.claude-tools-warning {
+	display: flex;
+	gap: 12px;
+	padding: 12px 16px;
+	margin: 12px;
+	border-radius: 8px;
+	background: var(--vscode-inputValidation-warningBackground);
+	border: 1px solid var(--vscode-inputValidation-warningBorder);
+}
+
+.claude-tools-warning .codicon {
+	color: var(--vscode-inputValidation-warningForeground);
+	font-size: 16px;
+}
+
+.claude-tools-warning .warning-content {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.claude-tools-warning .warning-content strong {
+	font-size: 12px;
+	color: var(--vscode-inputValidation-warningForeground);
+}
+
+.claude-tools-warning .warning-content span {
+	font-size: 11px;
+	color: var(--vscode-foreground);
+	line-height: 1.4;
+}
