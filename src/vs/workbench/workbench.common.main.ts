@@ -465,4 +465,7 @@ import './contrib/claudeHooks/browser/claudeHooks.contribution.js';
 // Claude Prompt Studio
 import './contrib/claudePromptStudio/browser/claudePromptStudio.contribution.js';
 
+// Claude Response Format
+import './contrib/claudeResponseFormat/browser/claudeResponseFormat.contribution.js';
+
 //#endregion
