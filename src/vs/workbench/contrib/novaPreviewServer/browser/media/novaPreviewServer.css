@@ -1,0 +1,365 @@
+/*---------------------------------------------------------------------------------------------
+ *  Nova Preview Server Styles
+ *--------------------------------------------------------------------------------------------*/
+
+/* ============================================
+   Preview View Container
+   ============================================ */
+
+.nova-preview-view {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	overflow: hidden;
+}
+
+/* ============================================
+   Toolbar
+   ============================================ */
+
+.nova-preview-toolbar {
+	display: flex;
+	align-items: center;
+	padding: 6px 8px;
+	gap: 8px;
+	border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+	background-color: rgba(128, 128, 128, 0.05);
+	flex-shrink: 0;
+}
+
+/* URL Bar */
+.nova-preview-url-bar {
+	flex: 1;
+	min-width: 0;
+}
+
+.nova-preview-url-input {
+	width: 100%;
+	padding: 4px 8px;
+	border: 1px solid rgba(128, 128, 128, 0.2);
+	border-radius: 4px;
+	background-color: var(--vscode-input-background);
+	color: var(--vscode-input-foreground);
+	font-size: 11px;
+	font-family: var(--monaco-monospace-font);
+	outline: none;
+	transition: border-color 0.15s ease-out;
+}
+
+.nova-preview-url-input:focus {
+	border-color: var(--vscode-focusBorder);
+}
+
+.nova-preview-url-input::placeholder {
+	color: var(--vscode-input-placeholderForeground);
+}
+
+/* Action Buttons */
+.nova-preview-actions {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+}
+
+.nova-preview-action {
+	width: 26px;
+	height: 26px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 14px;
+	opacity: 0.7;
+	transition: opacity 0.15s ease-out, background-color 0.15s ease-out;
+}
+
+.nova-preview-action:hover {
+	opacity: 1;
+	background-color: rgba(128, 128, 128, 0.2);
+}
+
+.nova-preview-action:focus {
+	outline: 2px solid var(--vscode-focusBorder);
+	outline-offset: -2px;
+}
+
+.nova-preview-action.active {
+	color: var(--vscode-progressBar-background);
+	opacity: 1;
+}
+
+.nova-preview-action.live-reload-btn.active {
+	animation: nova-preview-pulse 2s ease-in-out infinite;
+}
+
+@keyframes nova-preview-pulse {
+	0%, 100% { opacity: 1; }
+	50% { opacity: 0.6; }
+}
+
+/* ============================================
+   Preview Area
+   ============================================ */
+
+.nova-preview-area {
+	flex: 1;
+	overflow: hidden;
+	position: relative;
+	background-color: var(--vscode-editor-background);
+}
+
+.nova-preview-frame {
+	width: 100%;
+	height: 100%;
+	border: none;
+	background-color: white;
+}
+
+/* Loading Overlay */
+.nova-preview-loading {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 10;
+}
+
+.nova-preview-loading-spinner {
+	width: 40px;
+	height: 40px;
+	border: 3px solid rgba(255, 255, 255, 0.2);
+	border-top-color: var(--vscode-progressBar-background);
+	border-radius: 50%;
+	animation: nova-preview-spin 1s linear infinite;
+}
+
+@keyframes nova-preview-spin {
+	to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   Status Bar
+   ============================================ */
+
+.nova-preview-status-bar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 4px 8px;
+	border-top: 1px solid rgba(128, 128, 128, 0.2);
+	background-color: rgba(128, 128, 128, 0.05);
+	font-size: 11px;
+	flex-shrink: 0;
+}
+
+.nova-preview-status-text {
+	opacity: 0.7;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* Live Indicator */
+.nova-preview-live-indicator {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	color: var(--vscode-testing-iconPassed);
+	font-weight: 500;
+	transition: opacity 0.15s ease-out;
+}
+
+.nova-preview-live-indicator.hidden {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.nova-preview-live-indicator.flash {
+	animation: nova-preview-flash 0.3s ease-out;
+}
+
+@keyframes nova-preview-flash {
+	0%, 100% { opacity: 1; }
+	50% { opacity: 0.3; }
+}
+
+.nova-preview-live-dot {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background-color: var(--vscode-testing-iconPassed);
+	animation: nova-preview-dot-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes nova-preview-dot-pulse {
+	0%, 100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+	50% {
+		opacity: 0.5;
+		transform: scale(0.8);
+	}
+}
+
+/* ============================================
+   Empty/Placeholder State
+   ============================================ */
+
+.nova-preview-placeholder {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	padding: 32px;
+	text-align: center;
+}
+
+.nova-preview-placeholder-icon {
+	font-size: 64px;
+	opacity: 0.3;
+	margin-bottom: 24px;
+}
+
+.nova-preview-placeholder-title {
+	font-size: 18px;
+	font-weight: 500;
+	margin-bottom: 8px;
+	opacity: 0.8;
+}
+
+.nova-preview-placeholder-hint {
+	font-size: 14px;
+	opacity: 0.5;
+	max-width: 300px;
+}
+
+/* ============================================
+   Device Frame (Optional)
+   ============================================ */
+
+.nova-preview-device-frame {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 16px;
+	background-color: rgba(128, 128, 128, 0.05);
+}
+
+.nova-preview-device-frame .nova-preview-frame {
+	border-radius: 8px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive Preview Sizes */
+.nova-preview-device-frame.desktop .nova-preview-frame {
+	width: 100%;
+	max-width: 1280px;
+}
+
+.nova-preview-device-frame.tablet .nova-preview-frame {
+	width: 768px;
+	height: 1024px;
+}
+
+.nova-preview-device-frame.mobile .nova-preview-frame {
+	width: 375px;
+	height: 812px;
+	border-radius: 20px;
+}
+
+/* ============================================
+   Nova Theme Enhancements
+   ============================================ */
+
+.monaco-workbench.nova-theme .nova-preview-toolbar {
+	background-color: rgba(128, 128, 128, 0.03);
+}
+
+.monaco-workbench.nova-theme .nova-preview-url-input {
+	border-radius: 6px;
+}
+
+.monaco-workbench.nova-theme .nova-preview-action {
+	border-radius: 6px;
+}
+
+.monaco-workbench.nova-theme .nova-preview-status-bar {
+	background-color: rgba(128, 128, 128, 0.03);
+}
+
+/* ============================================
+   Error State
+   ============================================ */
+
+.nova-preview-error {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	padding: 32px;
+	text-align: center;
+	color: var(--vscode-errorForeground);
+}
+
+.nova-preview-error-icon {
+	font-size: 48px;
+	margin-bottom: 16px;
+}
+
+.nova-preview-error-message {
+	font-size: 16px;
+	margin-bottom: 8px;
+}
+
+.nova-preview-error-hint {
+	font-size: 12px;
+	opacity: 0.7;
+}
+
+/* ============================================
+   Responsive Toolbar
+   ============================================ */
+
+@media (max-width: 300px) {
+	.nova-preview-toolbar {
+		flex-wrap: wrap;
+	}
+
+	.nova-preview-url-bar {
+		order: 2;
+		flex-basis: 100%;
+	}
+
+	.nova-preview-actions {
+		order: 1;
+		margin-left: auto;
+	}
+}
+
+/* ============================================
+   High Contrast Theme Adjustments
+   ============================================ */
+
+.monaco-workbench.hc-black .nova-preview-toolbar,
+.monaco-workbench.hc-light .nova-preview-toolbar {
+	border-bottom-color: var(--vscode-contrastBorder);
+}
+
+.monaco-workbench.hc-black .nova-preview-status-bar,
+.monaco-workbench.hc-light .nova-preview-status-bar {
+	border-top-color: var(--vscode-contrastBorder);
+}
+
+.monaco-workbench.hc-black .nova-preview-url-input,
+.monaco-workbench.hc-light .nova-preview-url-input {
+	border-color: var(--vscode-contrastBorder);
+}

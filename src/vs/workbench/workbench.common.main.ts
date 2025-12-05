@@ -438,4 +438,7 @@ import './contrib/novaProject/browser/novaProject.contribution.js';
 // Nova Task Runner
 import './contrib/novaTaskRunner/browser/novaTaskRunner.contribution.js';
 
+// Nova Preview Server
+import './contrib/novaPreviewServer/browser/novaPreviewServer.contribution.js';
+
 //#endregion
