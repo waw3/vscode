@@ -456,4 +456,7 @@ import './contrib/claudeCommands/browser/claudeCommands.contribution.js';
 // Claude Agents & Subagents
 import './contrib/claudeAgents/browser/claudeAgents.contribution.js';
 
+// Claude MCP Servers
+import './contrib/claudeMcp/browser/claudeMcp.contribution.js';
+
 //#endregion

@@ -1,0 +1,618 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+/* ============================================
+   Claude MCP - Servers View
+   ============================================ */
+
+.claude-mcp-servers-view {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	padding: 0;
+}
+
+.claude-mcp-header {
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+	padding: 16px;
+	background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+	color: white;
+}
+
+.claude-mcp-header .header-content {
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+}
+
+.claude-mcp-header .codicon {
+	font-size: 24px;
+	opacity: 0.9;
+}
+
+.claude-mcp-header .header-text {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.claude-mcp-header .header-text strong {
+	font-size: 14px;
+}
+
+.claude-mcp-header .header-text span {
+	font-size: 11px;
+	opacity: 0.85;
+}
+
+.claude-mcp-toolbar {
+	display: flex;
+	gap: 8px;
+	padding: 12px;
+	border-bottom: 1px solid var(--vscode-panel-border);
+}
+
+.claude-mcp-btn {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	padding: 6px 12px;
+	border: 1px solid var(--vscode-panel-border);
+	border-radius: 6px;
+	background: transparent;
+	color: var(--vscode-foreground);
+	font-size: 12px;
+	cursor: pointer;
+	transition: all 0.15s ease;
+}
+
+.claude-mcp-btn:hover {
+	background: var(--vscode-toolbar-hoverBackground);
+}
+
+.claude-mcp-btn.primary {
+	background: var(--vscode-button-background);
+	color: var(--vscode-button-foreground);
+	border-color: transparent;
+}
+
+.claude-mcp-btn.primary:hover {
+	background: var(--vscode-button-hoverBackground);
+}
+
+.claude-mcp-btn.active {
+	background: var(--vscode-button-background);
+	color: var(--vscode-button-foreground);
+}
+
+.claude-mcp-servers-list {
+	flex: 1;
+	overflow-y: auto;
+	padding: 8px 0;
+}
+
+.claude-mcp-section {
+	margin-bottom: 16px;
+}
+
+.claude-mcp-section-header {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 16px;
+	font-size: 11px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	color: var(--vscode-sideBarSectionHeader-foreground);
+	background: var(--vscode-sideBarSectionHeader-background);
+}
+
+.claude-mcp-server-item {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 10px 16px;
+	cursor: pointer;
+	transition: background-color 0.15s ease;
+}
+
+.claude-mcp-server-item:hover {
+	background: var(--vscode-list-hoverBackground);
+}
+
+.claude-mcp-status {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	flex-shrink: 0;
+}
+
+.claude-mcp-status.connected {
+	background: var(--vscode-terminal-ansiGreen);
+	box-shadow: 0 0 6px var(--vscode-terminal-ansiGreen);
+}
+
+.claude-mcp-status.disconnected {
+	background: var(--vscode-descriptionForeground);
+}
+
+.claude-mcp-status.error {
+	background: var(--vscode-errorForeground);
+	box-shadow: 0 0 6px var(--vscode-errorForeground);
+}
+
+.claude-mcp-status.starting {
+	background: var(--vscode-terminal-ansiYellow);
+	animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+	0%, 100% { opacity: 1; }
+	50% { opacity: 0.5; }
+}
+
+.claude-mcp-server-icon {
+	width: 32px;
+	height: 32px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 8px;
+	background: var(--vscode-textBlockQuote-background);
+	color: var(--vscode-terminal-ansiBlue);
+}
+
+.claude-mcp-server-info {
+	flex: 1;
+	min-width: 0;
+}
+
+.claude-mcp-server-name {
+	font-size: 12px;
+	font-weight: 500;
+	color: var(--vscode-foreground);
+}
+
+.claude-mcp-server-desc {
+	font-size: 11px;
+	color: var(--vscode-descriptionForeground);
+	margin-top: 2px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.claude-mcp-server-tools {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+	margin-top: 6px;
+}
+
+.claude-mcp-server-tools .tool-tag {
+	padding: 2px 6px;
+	font-size: 10px;
+	font-weight: 500;
+	border-radius: 4px;
+	background: var(--vscode-badge-background);
+	color: var(--vscode-badge-foreground);
+}
+
+.claude-mcp-server-tools .more {
+	font-size: 10px;
+	color: var(--vscode-descriptionForeground);
+}
+
+.claude-mcp-server-actions {
+	display: flex;
+	gap: 4px;
+	opacity: 0;
+	transition: opacity 0.15s ease;
+}
+
+.claude-mcp-server-item:hover .claude-mcp-server-actions {
+	opacity: 1;
+}
+
+.claude-mcp-action {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 24px;
+	height: 24px;
+	border: none;
+	border-radius: 4px;
+	background: transparent;
+	color: var(--vscode-foreground);
+	cursor: pointer;
+	transition: all 0.15s ease;
+}
+
+.claude-mcp-action:hover {
+	background: var(--vscode-toolbar-hoverBackground);
+}
+
+.claude-mcp-action.primary {
+	background: var(--vscode-button-background);
+	color: var(--vscode-button-foreground);
+}
+
+.claude-mcp-action.primary:hover {
+	background: var(--vscode-button-hoverBackground);
+}
+
+.claude-mcp-action.danger:hover {
+	background: var(--vscode-inputValidation-errorBackground);
+	color: var(--vscode-errorForeground);
+}
+
+/* Empty state */
+.claude-mcp-empty {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 40px 20px;
+	text-align: center;
+	color: var(--vscode-descriptionForeground);
+}
+
+.claude-mcp-empty .codicon {
+	font-size: 32px;
+	opacity: 0.5;
+}
+
+.claude-mcp-empty .hint {
+	font-size: 11px;
+	opacity: 0.7;
+}
+
+/* Popular servers */
+.claude-mcp-popular {
+	border-top: 1px solid var(--vscode-panel-border);
+	padding-top: 8px;
+}
+
+.claude-mcp-popular-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 8px;
+	padding: 12px;
+}
+
+.claude-mcp-popular-card {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	padding: 12px;
+	border: 1px solid var(--vscode-panel-border);
+	border-radius: 8px;
+	background: var(--vscode-editor-background);
+	cursor: pointer;
+	transition: all 0.15s ease;
+}
+
+.claude-mcp-popular-card:hover {
+	border-color: var(--vscode-focusBorder);
+	background: var(--vscode-list-hoverBackground);
+}
+
+.claude-mcp-popular-card .popular-icon {
+	width: 28px;
+	height: 28px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 6px;
+	background: var(--vscode-textBlockQuote-background);
+	color: var(--vscode-terminal-ansiBlue);
+}
+
+.claude-mcp-popular-card .popular-name {
+	font-size: 12px;
+	font-weight: 500;
+}
+
+.claude-mcp-popular-card .popular-desc {
+	font-size: 10px;
+	color: var(--vscode-descriptionForeground);
+	line-height: 1.4;
+}
+
+/* ============================================
+   Claude MCP - Config View
+   ============================================ */
+
+.claude-mcp-config-view {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.claude-mcp-config-header {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 12px 16px;
+	font-weight: 500;
+	border-bottom: 1px solid var(--vscode-panel-border);
+}
+
+.claude-mcp-config-toolbar {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 8px 12px;
+	border-bottom: 1px solid var(--vscode-panel-border);
+}
+
+.claude-mcp-scope-wrapper {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.claude-mcp-scope-wrapper label {
+	font-size: 11px;
+	color: var(--vscode-descriptionForeground);
+}
+
+.claude-mcp-scope-select {
+	padding: 4px 8px;
+	border: 1px solid var(--vscode-input-border);
+	border-radius: 4px;
+	background: var(--vscode-input-background);
+	color: var(--vscode-input-foreground);
+	font-size: 12px;
+	cursor: pointer;
+}
+
+.claude-mcp-btn-group {
+	display: flex;
+	gap: 4px;
+	margin-left: auto;
+}
+
+.claude-mcp-btn-group .claude-mcp-btn {
+	padding: 4px 8px;
+}
+
+.claude-mcp-config-editor-wrapper {
+	flex: 1;
+	display: flex;
+	overflow: hidden;
+	border-bottom: 1px solid var(--vscode-panel-border);
+}
+
+.claude-mcp-gutter {
+	width: 40px;
+	padding: 12px 8px;
+	background: var(--vscode-editorGutter-background);
+	border-right: 1px solid var(--vscode-panel-border);
+	overflow: hidden;
+	text-align: right;
+}
+
+.claude-mcp-gutter .line-number {
+	font-size: 11px;
+	font-family: var(--vscode-editor-font-family);
+	line-height: 1.5;
+	color: var(--vscode-editorLineNumber-foreground);
+}
+
+.claude-mcp-config-textarea {
+	flex: 1;
+	width: 100%;
+	padding: 12px;
+	border: none;
+	background: var(--vscode-editor-background);
+	color: var(--vscode-editor-foreground);
+	font-family: var(--vscode-editor-font-family);
+	font-size: 12px;
+	line-height: 1.5;
+	resize: none;
+	outline: none;
+}
+
+.claude-mcp-config-textarea::placeholder {
+	color: var(--vscode-input-placeholderForeground);
+}
+
+.claude-mcp-config-status {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 6px 12px;
+	font-size: 11px;
+	color: var(--vscode-descriptionForeground);
+	background: var(--vscode-statusBar-background);
+	border-bottom: 1px solid var(--vscode-panel-border);
+}
+
+.claude-mcp-config-status .file-path {
+	font-family: var(--vscode-editor-font-family);
+	opacity: 0.8;
+}
+
+.claude-mcp-config-status.dirty .status {
+	color: var(--vscode-editorWarning-foreground);
+}
+
+.claude-mcp-config-help {
+	padding: 12px;
+	background: var(--vscode-textBlockQuote-background);
+	border-top: 1px solid var(--vscode-panel-border);
+}
+
+.claude-mcp-config-help .help-header {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 11px;
+	font-weight: 500;
+	margin-bottom: 8px;
+}
+
+.claude-mcp-config-help .help-example {
+	margin: 0;
+	padding: 8px;
+	border-radius: 4px;
+	background: var(--vscode-editor-background);
+	font-size: 10px;
+	font-family: var(--vscode-editor-font-family);
+	line-height: 1.4;
+	overflow-x: auto;
+}
+
+/* ============================================
+   Claude MCP - Logs View
+   ============================================ */
+
+.claude-mcp-logs-view {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.claude-mcp-logs-toolbar {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 8px 12px;
+	border-bottom: 1px solid var(--vscode-panel-border);
+}
+
+.claude-mcp-filter-wrapper {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.claude-mcp-filter-wrapper label {
+	font-size: 11px;
+	color: var(--vscode-descriptionForeground);
+}
+
+.claude-mcp-filter-select {
+	padding: 4px 8px;
+	border: 1px solid var(--vscode-input-border);
+	border-radius: 4px;
+	background: var(--vscode-input-background);
+	color: var(--vscode-input-foreground);
+	font-size: 11px;
+	cursor: pointer;
+}
+
+.claude-mcp-level-wrapper {
+	display: flex;
+	gap: 2px;
+	border: 1px solid var(--vscode-panel-border);
+	border-radius: 4px;
+	overflow: hidden;
+}
+
+.claude-mcp-level-btn {
+	padding: 4px 8px;
+	border: none;
+	background: transparent;
+	color: var(--vscode-foreground);
+	font-size: 10px;
+	cursor: pointer;
+	transition: all 0.15s ease;
+}
+
+.claude-mcp-level-btn:hover {
+	background: var(--vscode-toolbar-hoverBackground);
+}
+
+.claude-mcp-level-btn.active {
+	background: var(--vscode-button-background);
+	color: var(--vscode-button-foreground);
+}
+
+.claude-mcp-logs-actions {
+	display: flex;
+	gap: 4px;
+	margin-left: auto;
+}
+
+.claude-mcp-logs-container {
+	flex: 1;
+	overflow-y: auto;
+	padding: 8px 0;
+	font-family: var(--vscode-editor-font-family);
+	font-size: 11px;
+}
+
+.claude-mcp-logs-empty {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 40px 20px;
+	text-align: center;
+	color: var(--vscode-descriptionForeground);
+}
+
+.claude-mcp-log-entry {
+	display: flex;
+	gap: 8px;
+	padding: 4px 12px;
+	line-height: 1.4;
+}
+
+.claude-mcp-log-entry:hover {
+	background: var(--vscode-list-hoverBackground);
+}
+
+.claude-mcp-log-entry .log-timestamp {
+	color: var(--vscode-descriptionForeground);
+	flex-shrink: 0;
+}
+
+.claude-mcp-log-entry .log-level {
+	width: 40px;
+	font-weight: 600;
+	flex-shrink: 0;
+}
+
+.claude-mcp-log-entry .log-level.info {
+	color: var(--vscode-terminal-ansiBlue);
+}
+
+.claude-mcp-log-entry .log-level.warn {
+	color: var(--vscode-terminal-ansiYellow);
+}
+
+.claude-mcp-log-entry .log-level.error {
+	color: var(--vscode-terminal-ansiRed);
+}
+
+.claude-mcp-log-entry .log-level.debug {
+	color: var(--vscode-descriptionForeground);
+}
+
+.claude-mcp-log-entry .log-server {
+	color: var(--vscode-terminal-ansiMagenta);
+	flex-shrink: 0;
+}
+
+.claude-mcp-log-entry .log-message {
+	flex: 1;
+	color: var(--vscode-foreground);
+}
+
+.claude-mcp-log-entry.error {
+	background: rgba(255, 0, 0, 0.1);
+}
+
+.claude-mcp-log-entry.warn {
+	background: rgba(255, 200, 0, 0.1);
+}
