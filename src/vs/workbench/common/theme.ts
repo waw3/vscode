@@ -14,13 +14,13 @@ import { ColorScheme } from '../../platform/theme/common/theme.js';
 export function WORKBENCH_BACKGROUND(theme: IColorTheme): Color {
 	switch (theme.type) {
 		case ColorScheme.LIGHT:
-			return Color.fromHex('#F3F3F3');
+			return Color.fromHex('#F5F5F7'); // Nova-inspired light background
 		case ColorScheme.HIGH_CONTRAST_LIGHT:
 			return Color.fromHex('#FFFFFF');
 		case ColorScheme.HIGH_CONTRAST_DARK:
 			return Color.fromHex('#000000');
 		default:
-			return Color.fromHex('#252526');
+			return Color.fromHex('#1E1E1E'); // Nova-inspired dark background
 	}
 }
 
@@ -33,8 +33,8 @@ export const TAB_ACTIVE_BACKGROUND = registerColor('tab.activeBackground', edito
 export const TAB_UNFOCUSED_ACTIVE_BACKGROUND = registerColor('tab.unfocusedActiveBackground', TAB_ACTIVE_BACKGROUND, localize('tabUnfocusedActiveBackground', "Active tab background color in an unfocused group. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups."));
 
 export const TAB_INACTIVE_BACKGROUND = registerColor('tab.inactiveBackground', {
-	dark: '#2D2D2D',
-	light: '#ECECEC',
+	dark: '#1E1E1E', // Nova-inspired - blend with tab bar
+	light: '#F5F5F7', // Nova-inspired light
 	hcDark: null,
 	hcLight: null,
 }, localize('tabInactiveBackground', "Inactive tab background color in an active group. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups."));
@@ -100,8 +100,8 @@ export const TAB_UNFOCUSED_HOVER_FOREGROUND = registerColor('tab.unfocusedHoverF
 //#region Tab Borders
 
 export const TAB_BORDER = registerColor('tab.border', {
-	dark: '#252526',
-	light: '#F3F3F3',
+	dark: '#1E1E1E', // Nova-inspired - minimal borders
+	light: '#F5F5F7', // Nova-inspired light
 	hcDark: contrastBorder,
 	hcLight: contrastBorder,
 }, localize('tabBorder', "Border to separate tabs from each other. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups."));
@@ -211,8 +211,8 @@ export const EDITOR_GROUP_FOCUSED_EMPTY_BORDER = registerColor('editorGroup.focu
 }, localize('editorGroupFocusedEmptyBorder', "Border color of an empty editor group that is focused. Editor groups are the containers of editors."));
 
 export const EDITOR_GROUP_HEADER_TABS_BACKGROUND = registerColor('editorGroupHeader.tabsBackground', {
-	dark: '#252526',
-	light: '#F3F3F3',
+	dark: '#1E1E1E', // Nova-inspired - unified with workspace
+	light: '#F5F5F7', // Nova-inspired light
 	hcDark: null,
 	hcLight: null
 }, localize('tabsContainerBackground', "Background color of the editor group title header when tabs are enabled. Editor groups are the containers of editors."));
@@ -282,8 +282,8 @@ export const BANNER_ICON_FOREGROUND = registerColor('banner.iconForeground', edi
 // < --- Status --- >
 
 export const STATUS_BAR_FOREGROUND = registerColor('statusBar.foreground', {
-	dark: '#FFFFFF',
-	light: '#FFFFFF',
+	dark: '#A0A0A0', // Nova-inspired - subtle gray text
+	light: '#6E6E6E', // Nova-inspired - subtle gray text for light theme
 	hcDark: '#FFFFFF',
 	hcLight: editorForeground
 }, localize('statusBarForeground', "Status bar foreground color when a workspace or folder is opened. The status bar is shown in the bottom of the window."));
@@ -291,8 +291,8 @@ export const STATUS_BAR_FOREGROUND = registerColor('statusBar.foreground', {
 export const STATUS_BAR_NO_FOLDER_FOREGROUND = registerColor('statusBar.noFolderForeground', STATUS_BAR_FOREGROUND, localize('statusBarNoFolderForeground', "Status bar foreground color when no folder is opened. The status bar is shown in the bottom of the window."));
 
 export const STATUS_BAR_BACKGROUND = registerColor('statusBar.background', {
-	dark: '#007ACC',
-	light: '#007ACC',
+	dark: '#1E1E1E', // Nova-inspired - subtle, matches workspace
+	light: '#F5F5F7', // Nova-inspired light
 	hcDark: null,
 	hcLight: null,
 }, localize('statusBarBackground', "Status bar background color when a workspace or folder is opened. The status bar is shown in the bottom of the window."));
@@ -388,15 +388,15 @@ export const STATUS_BAR_WARNING_ITEM_HOVER_BACKGROUND = registerColor('statusBar
 // < --- Activity Bar --- >
 
 export const ACTIVITY_BAR_BACKGROUND = registerColor('activityBar.background', {
-	dark: '#333333',
-	light: '#2C2C2C',
+	dark: '#1E1E1E', // Nova-inspired - matches sidebar for unified look
+	light: '#F5F5F7', // Nova-inspired light
 	hcDark: '#000000',
 	hcLight: '#FFFFFF'
 }, localize('activityBarBackground', "Activity bar background color. The activity bar is showing on the far left or right and allows to switch between views of the side bar."));
 
 export const ACTIVITY_BAR_FOREGROUND = registerColor('activityBar.foreground', {
 	dark: Color.white,
-	light: Color.white,
+	light: '#424242', // Nova-inspired - dark icons on light background
 	hcDark: Color.white,
 	hcLight: editorForeground
 }, localize('activityBarForeground', "Activity bar item foreground color when it is active. The activity bar is showing on the far left or right and allows to switch between views of the side bar."));
@@ -601,8 +601,8 @@ export const EXTENSION_BADGE_FOREGROUND = registerColor('extensionBadge.remoteFo
 // < --- Side Bar --- >
 
 export const SIDE_BAR_BACKGROUND = registerColor('sideBar.background', {
-	dark: '#252526',
-	light: '#F3F3F3',
+	dark: '#1E1E1E', // Nova-inspired darker sidebar
+	light: '#F5F5F7', // Nova-inspired light sidebar
 	hcDark: '#000000',
 	hcLight: '#FFFFFF'
 }, localize('sideBarBackground', "Side bar background color. The side bar is the container for views like explorer and search."));
@@ -651,7 +651,7 @@ export const SIDE_BAR_STICKY_SCROLL_SHADOW = registerColor('sideBarStickyScroll.
 // < --- Title Bar --- >
 
 export const TITLE_BAR_ACTIVE_FOREGROUND = registerColor('titleBar.activeForeground', {
-	dark: '#CCCCCC',
+	dark: '#E0E0E0', // Nova-inspired - slightly brighter
 	light: '#333333',
 	hcDark: '#FFFFFF',
 	hcLight: '#292929'
@@ -665,8 +665,8 @@ export const TITLE_BAR_INACTIVE_FOREGROUND = registerColor('titleBar.inactiveFor
 }, localize('titleBarInactiveForeground', "Title bar foreground when the window is inactive."));
 
 export const TITLE_BAR_ACTIVE_BACKGROUND = registerColor('titleBar.activeBackground', {
-	dark: '#3C3C3C',
-	light: '#DDDDDD',
+	dark: '#1E1E1E', // Nova-inspired - unified with sidebar
+	light: '#F5F5F7', // Nova-inspired light
 	hcDark: '#000000',
 	hcLight: '#FFFFFF'
 }, localize('titleBarActiveBackground', "Title bar background when the window is active."));

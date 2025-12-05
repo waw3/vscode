@@ -1,0 +1,468 @@
+/*---------------------------------------------------------------------------------------------
+ *  Nova-Inspired Theme for VS Code
+ *  Mimics Panic Nova's macOS-native aesthetic
+ *--------------------------------------------------------------------------------------------*/
+
+/* ============================================
+   NOVA THEME: Global Enhancements
+   ============================================ */
+
+/* Enable vibrancy/translucency effect for macOS */
+.monaco-workbench.mac.nova-theme {
+	--nova-vibrancy-background: rgba(30, 30, 30, 0.85);
+	--nova-vibrancy-light-background: rgba(246, 246, 246, 0.9);
+	--nova-border-radius: 8px;
+	--nova-border-radius-large: 12px;
+	--nova-spacing-unit: 4px;
+	--nova-transition-fast: 0.15s ease-out;
+	--nova-transition-normal: 0.25s ease-out;
+	--nova-shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.08);
+	--nova-shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Smoother animations */
+.monaco-workbench.mac.nova-theme.monaco-enable-motion * {
+	transition: background-color var(--nova-transition-fast),
+				border-color var(--nova-transition-fast),
+				box-shadow var(--nova-transition-fast);
+}
+
+/* ============================================
+   NOVA THEME: Activity Bar
+   ============================================ */
+
+.monaco-workbench.nova-theme .part.activitybar {
+	background: transparent;
+}
+
+.monaco-workbench.nova-theme .activitybar > .content {
+	padding: 8px 0;
+}
+
+.monaco-workbench.nova-theme .activitybar .action-item .action-label {
+	border-radius: 8px;
+	margin: 2px 6px;
+	transition: background-color var(--nova-transition-fast);
+}
+
+.monaco-workbench.nova-theme .activitybar .action-item:hover .action-label {
+	background-color: rgba(255, 255, 255, 0.08);
+}
+
+.monaco-workbench.nova-theme .activitybar .action-item.checked .action-label {
+	background-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Activity bar badge styling */
+.monaco-workbench.nova-theme .activitybar .badge {
+	border-radius: 10px;
+	min-width: 18px;
+	height: 18px;
+	line-height: 18px;
+	font-size: 10px;
+	font-weight: 600;
+}
+
+/* ============================================
+   NOVA THEME: Sidebar
+   ============================================ */
+
+/* Vibrancy effect for sidebar */
+.monaco-workbench.mac.nova-theme .part.sidebar {
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+	background-color: var(--nova-vibrancy-background) !important;
+}
+
+.monaco-workbench.mac.nova-theme.vs .part.sidebar {
+	background-color: var(--nova-vibrancy-light-background) !important;
+}
+
+/* Sidebar title */
+.monaco-workbench.nova-theme .part.sidebar > .title {
+	height: 38px;
+	padding: 0 12px;
+	font-size: 11px;
+	font-weight: 600;
+	letter-spacing: 0.5px;
+	border-bottom: 1px solid rgba(128, 128, 128, 0.15);
+}
+
+.monaco-workbench.nova-theme .part.sidebar > .title > .title-label h2 {
+	text-transform: uppercase;
+	font-size: 11px;
+	font-weight: 600;
+	letter-spacing: 0.5px;
+	opacity: 0.7;
+}
+
+/* Sidebar section headers */
+.monaco-workbench.nova-theme .pane-header {
+	height: 28px;
+	padding: 0 12px;
+	font-size: 11px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.3px;
+}
+
+.monaco-workbench.nova-theme .pane-header .twisties {
+	margin-right: 4px;
+}
+
+/* Tree view items */
+.monaco-workbench.nova-theme .monaco-list-row {
+	padding-left: 8px;
+	border-radius: 4px;
+	margin: 1px 4px;
+}
+
+.monaco-workbench.nova-theme .monaco-list:focus .monaco-list-row.selected {
+	border-radius: 6px;
+}
+
+/* ============================================
+   NOVA THEME: Editor Area
+   ============================================ */
+
+/* Editor tabs container */
+.monaco-workbench.nova-theme .part.editor > .content .editor-group-container > .title {
+	height: 36px;
+	padding: 0 8px;
+}
+
+/* Individual tabs */
+.monaco-workbench.nova-theme .part.editor > .content .editor-group-container > .title .tabs-container > .tab {
+	height: 32px;
+	padding: 0 12px;
+	margin: 2px 2px;
+	border-radius: 6px;
+	font-size: 12px;
+	border: none;
+}
+
+.monaco-workbench.nova-theme .part.editor > .content .editor-group-container > .title .tabs-container > .tab.active {
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+.monaco-workbench.nova-theme.vs .part.editor > .content .editor-group-container > .title .tabs-container > .tab.active {
+	background-color: rgba(0, 0, 0, 0.06);
+}
+
+/* Tab close button */
+.monaco-workbench.nova-theme .tab .tab-actions {
+	opacity: 0;
+	transition: opacity var(--nova-transition-fast);
+}
+
+.monaco-workbench.nova-theme .tab:hover .tab-actions,
+.monaco-workbench.nova-theme .tab.active .tab-actions {
+	opacity: 1;
+}
+
+/* Editor breadcrumbs */
+.monaco-workbench.nova-theme .breadcrumbs-control {
+	height: 24px;
+	padding: 0 8px;
+	font-size: 11px;
+}
+
+/* ============================================
+   NOVA THEME: Title Bar
+   ============================================ */
+
+.monaco-workbench.mac.nova-theme .part.titlebar {
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+}
+
+/* Command center (search bar in title) */
+.monaco-workbench.nova-theme .part.titlebar .command-center .action-item.command-center-center {
+	border-radius: 8px;
+	height: 24px;
+	border: 1px solid rgba(128, 128, 128, 0.2);
+	background-color: rgba(128, 128, 128, 0.08);
+	transition: all var(--nova-transition-fast);
+}
+
+.monaco-workbench.nova-theme .part.titlebar .command-center .action-item.command-center-center:hover {
+	background-color: rgba(128, 128, 128, 0.15);
+	border-color: rgba(128, 128, 128, 0.3);
+}
+
+/* Window controls area */
+.monaco-workbench.nova-theme .window-controls-container > .window-icon {
+	border-radius: 4px;
+	margin: 0 2px;
+}
+
+/* ============================================
+   NOVA THEME: Status Bar
+   ============================================ */
+
+.monaco-workbench.nova-theme .part.statusbar {
+	height: 24px;
+	font-size: 11px;
+	border-top: 1px solid rgba(128, 128, 128, 0.15);
+}
+
+.monaco-workbench.nova-theme .part.statusbar > .items-container > .statusbar-item {
+	line-height: 24px;
+}
+
+.monaco-workbench.nova-theme .part.statusbar > .items-container > .statusbar-item > .statusbar-item-label {
+	padding: 0 8px;
+	border-radius: 4px;
+	margin: 2px 1px;
+}
+
+.monaco-workbench.nova-theme .part.statusbar > .items-container > .statusbar-item a:hover:not(.disabled) {
+	background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* ============================================
+   NOVA THEME: Panel (Terminal, Output, etc.)
+   ============================================ */
+
+.monaco-workbench.nova-theme .part.panel {
+	border-top: 1px solid rgba(128, 128, 128, 0.15);
+}
+
+.monaco-workbench.nova-theme .part.panel > .title {
+	height: 36px;
+	padding: 0 8px;
+}
+
+.monaco-workbench.nova-theme .part.panel .panel-action-bar {
+	padding: 0 4px;
+}
+
+/* Panel tabs */
+.monaco-workbench.nova-theme .part.panel .composite-bar .action-item .action-label {
+	font-size: 11px;
+	font-weight: 500;
+	padding: 4px 10px;
+	border-radius: 4px;
+	margin: 2px;
+}
+
+/* ============================================
+   NOVA THEME: Auxiliary Bar (Right Sidebar)
+   ============================================ */
+
+.monaco-workbench.mac.nova-theme .part.auxiliarybar {
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+	background-color: var(--nova-vibrancy-background) !important;
+}
+
+.monaco-workbench.mac.nova-theme.vs .part.auxiliarybar {
+	background-color: var(--nova-vibrancy-light-background) !important;
+}
+
+/* ============================================
+   NOVA THEME: Notifications
+   ============================================ */
+
+.monaco-workbench.nova-theme .notifications-toasts {
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: var(--nova-shadow-medium);
+}
+
+.monaco-workbench.nova-theme .notification-toast {
+	border-radius: 8px;
+	margin: 4px;
+}
+
+.monaco-workbench.nova-theme .notifications-center {
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: var(--nova-shadow-medium);
+}
+
+/* ============================================
+   NOVA THEME: Quick Pick / Command Palette
+   ============================================ */
+
+.monaco-workbench.nova-theme .quick-input-widget {
+	border-radius: 10px;
+	overflow: hidden;
+	box-shadow: var(--nova-shadow-medium);
+}
+
+.monaco-workbench.nova-theme .quick-input-widget .quick-input-header {
+	padding: 12px;
+}
+
+.monaco-workbench.nova-theme .quick-input-widget .quick-input-header .quick-input-box {
+	border-radius: 6px;
+}
+
+.monaco-workbench.nova-theme .quick-input-widget .quick-input-list {
+	padding: 4px 8px;
+}
+
+.monaco-workbench.nova-theme .quick-input-widget .quick-input-list .monaco-list-row {
+	border-radius: 6px;
+	margin: 2px 0;
+}
+
+/* ============================================
+   NOVA THEME: Inputs and Buttons
+   ============================================ */
+
+.monaco-workbench.nova-theme .monaco-inputbox {
+	border-radius: 6px;
+}
+
+.monaco-workbench.nova-theme .monaco-button {
+	border-radius: 6px;
+	font-weight: 500;
+	padding: 6px 14px;
+}
+
+.monaco-workbench.nova-theme .monaco-text-button {
+	border-radius: 6px;
+}
+
+/* ============================================
+   NOVA THEME: Dropdown / Select
+   ============================================ */
+
+.monaco-workbench.nova-theme select {
+	border-radius: 6px;
+	padding: 4px 8px;
+}
+
+.monaco-workbench.nova-theme .select-container:after {
+	right: 8px;
+}
+
+/* ============================================
+   NOVA THEME: Context Menus
+   ============================================ */
+
+.monaco-workbench.nova-theme .context-view .monaco-menu {
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: var(--nova-shadow-medium);
+}
+
+.monaco-workbench.nova-theme .context-view .monaco-menu .monaco-action-bar.vertical .action-item {
+	border-radius: 4px;
+	margin: 2px 4px;
+}
+
+/* ============================================
+   NOVA THEME: Scrollbars
+   ============================================ */
+
+.monaco-workbench.nova-theme .monaco-scrollable-element > .scrollbar > .slider {
+	border-radius: 4px;
+}
+
+.monaco-workbench.nova-theme .monaco-scrollable-element > .scrollbar.vertical > .slider {
+	width: 6px;
+	min-width: 6px;
+}
+
+.monaco-workbench.nova-theme .monaco-scrollable-element > .scrollbar.horizontal > .slider {
+	height: 6px;
+	min-height: 6px;
+}
+
+/* ============================================
+   NOVA THEME: Minimap
+   ============================================ */
+
+.monaco-workbench.nova-theme .minimap {
+	opacity: 0.6;
+	transition: opacity var(--nova-transition-fast);
+}
+
+.monaco-workbench.nova-theme .editor-group-container:hover .minimap {
+	opacity: 1;
+}
+
+/* ============================================
+   NOVA THEME: Diff Editor
+   ============================================ */
+
+.monaco-workbench.nova-theme .monaco-diff-editor .insert-sign,
+.monaco-workbench.nova-theme .monaco-diff-editor .delete-sign {
+	border-radius: 2px;
+}
+
+/* ============================================
+   NOVA THEME: Git Decorations
+   ============================================ */
+
+.monaco-workbench.nova-theme .monaco-icon-label.modified .monaco-icon-label-container {
+	border-left: 2px solid var(--vscode-gitDecoration-modifiedResourceForeground);
+	padding-left: 6px;
+	margin-left: -2px;
+}
+
+/* ============================================
+   NOVA THEME: Search Widget
+   ============================================ */
+
+.monaco-workbench.nova-theme .editor-widget.find-widget {
+	border-radius: 8px;
+	box-shadow: var(--nova-shadow-medium);
+}
+
+.monaco-workbench.nova-theme .editor-widget.find-widget .monaco-inputbox {
+	border-radius: 4px;
+}
+
+/* ============================================
+   NOVA THEME: Light Theme Specific
+   ============================================ */
+
+.monaco-workbench.nova-theme.vs .part.activitybar .action-item:hover .action-label {
+	background-color: rgba(0, 0, 0, 0.06);
+}
+
+.monaco-workbench.nova-theme.vs .part.activitybar .action-item.checked .action-label {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+.monaco-workbench.nova-theme.vs .part.statusbar > .items-container > .statusbar-item a:hover:not(.disabled) {
+	background-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* ============================================
+   NOVA THEME: Focus States
+   ============================================ */
+
+.monaco-workbench.nova-theme [tabindex="0"]:focus,
+.monaco-workbench.nova-theme [tabindex="-1"]:focus,
+.monaco-workbench.nova-theme .synthetic-focus {
+	outline: 2px solid var(--vscode-focusBorder);
+	outline-offset: -2px;
+	border-radius: 4px;
+}
+
+/* ============================================
+   NOVA THEME: Tooltips
+   ============================================ */
+
+.monaco-workbench.nova-theme .monaco-hover {
+	border-radius: 6px;
+	box-shadow: var(--nova-shadow-medium);
+}
+
+/* ============================================
+   NOVA THEME: Progress Bar
+   ============================================ */
+
+.monaco-workbench.nova-theme .monaco-progress-container {
+	border-radius: 2px;
+	overflow: hidden;
+}
+
+.monaco-workbench.nova-theme .monaco-progress-container .progress-bit {
+	border-radius: 2px;
+}

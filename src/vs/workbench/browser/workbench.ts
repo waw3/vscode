@@ -323,6 +323,7 @@ export class Workbench extends Layout {
 		const workbenchClasses = coalesce([
 			'monaco-workbench',
 			platformClass,
+			'nova-theme', // Nova-inspired UI theme
 			isWeb ? 'web' : undefined,
 			isChrome ? 'chromium' : isFirefox ? 'firefox' : isSafari ? 'safari' : undefined,
 			...this.getLayoutClasses(),
