@@ -450,4 +450,7 @@ import './contrib/claudeAgent/browser/claudeAgent.contribution.js';
 // Claude Memory System
 import './contrib/claudeMemory/browser/claudeMemory.contribution.js';
 
+// Claude Slash Commands
+import './contrib/claudeCommands/browser/claudeCommands.contribution.js';
+
 //#endregion
