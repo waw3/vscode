@@ -435,4 +435,7 @@ import './contrib/splitSidebar/browser/splitSidebar.contribution.js';
 // Nova Project Panel
 import './contrib/novaProject/browser/novaProject.contribution.js';
 
+// Nova Task Runner
+import './contrib/novaTaskRunner/browser/novaTaskRunner.contribution.js';
+
 //#endregion
