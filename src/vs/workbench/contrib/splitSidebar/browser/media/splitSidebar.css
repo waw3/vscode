@@ -1,0 +1,82 @@
+/*---------------------------------------------------------------------------------------------
+ *  Nova Split Sidebar Styles
+ *--------------------------------------------------------------------------------------------*/
+
+/* Split Sidebar Indicator */
+.monaco-workbench.nova-theme .part.sidebar.split-active,
+.monaco-workbench.nova-theme .part.auxiliarybar.split-active {
+	border-color: var(--vscode-focusBorder);
+}
+
+/* Enhanced styling when both sidebars are visible */
+.monaco-workbench.nova-theme:not(.nosidebar):not(.noauxiliarybar) .part.sidebar {
+	border-right: 1px solid rgba(128, 128, 128, 0.2);
+}
+
+.monaco-workbench.nova-theme:not(.nosidebar):not(.noauxiliarybar) .part.auxiliarybar {
+	border-left: 1px solid rgba(128, 128, 128, 0.2);
+}
+
+/* Split action button styling */
+.monaco-workbench.nova-theme .action-item .action-label.codicon-split-horizontal {
+	opacity: 0.7;
+	transition: opacity 0.15s ease-out;
+}
+
+.monaco-workbench.nova-theme .action-item:hover .action-label.codicon-split-horizontal {
+	opacity: 1;
+}
+
+/* Synchronized styling between sidebars */
+.monaco-workbench.nova-theme .part.sidebar > .title,
+.monaco-workbench.nova-theme .part.auxiliarybar > .title {
+	font-size: 11px;
+	font-weight: 600;
+	letter-spacing: 0.3px;
+}
+
+/* Matching vibrancy effect on auxiliary bar */
+.monaco-workbench.mac.nova-theme:not(.noauxiliarybar) .part.auxiliarybar {
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+}
+
+/* Split indicator line between sidebar and auxiliary bar */
+.monaco-workbench.nova-theme .part.editor {
+	position: relative;
+}
+
+/* View container icons in split mode */
+.monaco-workbench.nova-theme .composite-bar .action-item.checked .action-label {
+	border-radius: 6px;
+}
+
+/* Improve drag and drop between sidebars */
+.monaco-workbench.nova-theme .part.sidebar.drag-target,
+.monaco-workbench.nova-theme .part.auxiliarybar.drag-target {
+	outline: 2px dashed var(--vscode-focusBorder);
+	outline-offset: -2px;
+}
+
+/* Split button in title bar */
+.monaco-workbench.nova-theme .split-sidebar-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 24px;
+	height: 24px;
+	border-radius: 4px;
+	cursor: pointer;
+	opacity: 0.6;
+	transition: opacity 0.15s ease-out, background-color 0.15s ease-out;
+}
+
+.monaco-workbench.nova-theme .split-sidebar-button:hover {
+	opacity: 1;
+	background-color: rgba(128, 128, 128, 0.15);
+}
+
+.monaco-workbench.nova-theme .split-sidebar-button.active {
+	opacity: 1;
+	background-color: rgba(128, 128, 128, 0.2);
+}

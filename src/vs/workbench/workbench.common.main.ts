@@ -429,4 +429,7 @@ import './contrib/editTelemetry/browser/editTelemetry.contribution.js';
 // Opener
 import './contrib/opener/browser/opener.contribution.js';
 
+// Nova Split Sidebar
+import './contrib/splitSidebar/browser/splitSidebar.contribution.js';
+
 //#endregion

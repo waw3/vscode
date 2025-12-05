@@ -3,6 +3,9 @@
  *  Mimics Panic Nova's macOS-native aesthetic
  *--------------------------------------------------------------------------------------------*/
 
+/* Import Split Sidebar Styles */
+@import '../../contrib/splitSidebar/browser/media/splitSidebar.css';
+
 /* ============================================
    NOVA THEME: Global Enhancements
    ============================================ */
