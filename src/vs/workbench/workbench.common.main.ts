@@ -444,4 +444,7 @@ import './contrib/novaPreviewServer/browser/novaPreviewServer.contribution.js';
 // Nova Remote Files (FTP/SFTP/S3)
 import './contrib/novaRemoteFiles/browser/novaRemoteFiles.contribution.js';
 
+// Claude Agent Integration
+import './contrib/claudeAgent/browser/claudeAgent.contribution.js';
+
 //#endregion
