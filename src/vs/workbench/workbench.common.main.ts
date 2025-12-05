@@ -447,4 +447,7 @@ import './contrib/novaRemoteFiles/browser/novaRemoteFiles.contribution.js';
 // Claude Agent Integration
 import './contrib/claudeAgent/browser/claudeAgent.contribution.js';
 
+// Claude Memory System
+import './contrib/claudeMemory/browser/claudeMemory.contribution.js';
+
 //#endregion

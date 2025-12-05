@@ -1,0 +1,531 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+/* ============================================
+   Claude Memory - Hierarchy View
+   ============================================ */
+
+.claude-memory-hierarchy-view {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	padding: 0;
+}
+
+.claude-memory-header {
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+	padding: 16px;
+	background: linear-gradient(135deg, var(--vscode-activityBarBadge-background) 0%, #8B5CF6 100%);
+	color: var(--vscode-activityBarBadge-foreground);
+}
+
+.claude-memory-header-icon {
+	font-size: 24px;
+	opacity: 0.9;
+}
+
+.claude-memory-header-text {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.claude-memory-header-text strong {
+	font-size: 14px;
+}
+
+.claude-memory-header-text span {
+	font-size: 11px;
+	opacity: 0.85;
+}
+
+.claude-memory-toolbar {
+	display: flex;
+	gap: 8px;
+	padding: 12px;
+	border-bottom: 1px solid var(--vscode-panel-border);
+}
+
+.claude-memory-btn {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	padding: 6px 12px;
+	border: 1px solid var(--vscode-panel-border);
+	border-radius: 6px;
+	background: transparent;
+	color: var(--vscode-foreground);
+	font-size: 12px;
+	cursor: pointer;
+	transition: all 0.15s ease;
+}
+
+.claude-memory-btn:hover {
+	background: var(--vscode-toolbar-hoverBackground);
+}
+
+.claude-memory-btn.primary {
+	background: var(--vscode-button-background);
+	color: var(--vscode-button-foreground);
+	border-color: transparent;
+}
+
+.claude-memory-btn.primary:hover {
+	background: var(--vscode-button-hoverBackground);
+}
+
+.claude-memory-list {
+	flex: 1;
+	overflow-y: auto;
+	padding: 8px 0;
+}
+
+.claude-memory-section {
+	margin-bottom: 16px;
+}
+
+.claude-memory-section.dimmed {
+	opacity: 0.6;
+}
+
+.claude-memory-section-header {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 16px;
+	font-size: 11px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	color: var(--vscode-sideBarSectionHeader-foreground);
+	background: var(--vscode-sideBarSectionHeader-background);
+}
+
+.claude-memory-item {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 10px 16px;
+	cursor: pointer;
+	transition: background-color 0.15s ease;
+}
+
+.claude-memory-item:hover {
+	background: var(--vscode-list-hoverBackground);
+}
+
+.claude-memory-item.missing {
+	opacity: 0.6;
+}
+
+.claude-memory-priority {
+	width: 20px;
+	height: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 10px;
+	font-weight: 700;
+	border-radius: 50%;
+	background: var(--vscode-badge-background);
+	color: var(--vscode-badge-foreground);
+}
+
+.claude-memory-icon {
+	color: var(--vscode-icon-foreground);
+}
+
+.claude-memory-info {
+	flex: 1;
+	min-width: 0;
+}
+
+.claude-memory-path {
+	font-size: 12px;
+	font-weight: 500;
+	color: var(--vscode-foreground);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.claude-memory-meta {
+	display: flex;
+	gap: 8px;
+	margin-top: 4px;
+	font-size: 10px;
+}
+
+.claude-memory-meta .type {
+	padding: 2px 6px;
+	border-radius: 4px;
+	font-weight: 600;
+	text-transform: uppercase;
+	background: var(--vscode-badge-background);
+	color: var(--vscode-badge-foreground);
+}
+
+.claude-memory-meta .type.project {
+	background: var(--vscode-terminal-ansiBlue);
+	color: white;
+}
+
+.claude-memory-meta .type.local {
+	background: var(--vscode-terminal-ansiYellow);
+	color: black;
+}
+
+.claude-memory-meta .type.user {
+	background: var(--vscode-terminal-ansiGreen);
+	color: white;
+}
+
+.claude-memory-meta .size,
+.claude-memory-meta .tokens {
+	color: var(--vscode-descriptionForeground);
+}
+
+.claude-memory-actions {
+	display: flex;
+	gap: 4px;
+	opacity: 0;
+	transition: opacity 0.15s ease;
+}
+
+.claude-memory-item:hover .claude-memory-actions {
+	opacity: 1;
+}
+
+.claude-memory-action {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 24px;
+	height: 24px;
+	border: none;
+	border-radius: 4px;
+	background: transparent;
+	color: var(--vscode-foreground);
+	cursor: pointer;
+	transition: all 0.15s ease;
+}
+
+.claude-memory-action:hover {
+	background: var(--vscode-toolbar-hoverBackground);
+}
+
+.claude-memory-action.danger:hover {
+	background: var(--vscode-inputValidation-errorBackground);
+	color: var(--vscode-errorForeground);
+}
+
+.claude-memory-action.create {
+	background: var(--vscode-button-background);
+	color: var(--vscode-button-foreground);
+}
+
+.claude-memory-action.create:hover {
+	background: var(--vscode-button-hoverBackground);
+}
+
+.claude-memory-footer {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 12px 16px;
+	font-size: 11px;
+	color: var(--vscode-descriptionForeground);
+	border-top: 1px solid var(--vscode-panel-border);
+}
+
+/* ============================================
+   Claude Memory - Editor View
+   ============================================ */
+
+.claude-memory-editor-view {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.claude-memory-editor-toolbar {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 12px;
+	border-bottom: 1px solid var(--vscode-panel-border);
+}
+
+.claude-memory-file-select {
+	flex: 1;
+	padding: 6px 10px;
+	border: 1px solid var(--vscode-input-border);
+	border-radius: 6px;
+	background: var(--vscode-input-background);
+	color: var(--vscode-input-foreground);
+	font-size: 12px;
+	cursor: pointer;
+}
+
+.claude-memory-btn-group {
+	display: flex;
+	gap: 4px;
+}
+
+.claude-memory-btn-group .claude-memory-btn {
+	padding: 6px 8px;
+}
+
+.claude-memory-editor-wrapper {
+	flex: 1;
+	display: flex;
+	overflow: hidden;
+}
+
+.claude-memory-textarea {
+	flex: 1;
+	width: 100%;
+	padding: 16px;
+	border: none;
+	background: var(--vscode-editor-background);
+	color: var(--vscode-editor-foreground);
+	font-family: var(--vscode-editor-font-family);
+	font-size: var(--vscode-editor-font-size);
+	line-height: 1.6;
+	resize: none;
+	outline: none;
+}
+
+.claude-memory-textarea::placeholder {
+	color: var(--vscode-input-placeholderForeground);
+}
+
+.claude-memory-status-bar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 6px 12px;
+	font-size: 11px;
+	color: var(--vscode-descriptionForeground);
+	background: var(--vscode-statusBar-background);
+	border-top: 1px solid var(--vscode-panel-border);
+}
+
+.claude-memory-status-bar .file-name {
+	font-weight: 500;
+}
+
+.claude-memory-status-bar.dirty .file-name {
+	color: var(--vscode-editorWarning-foreground);
+}
+
+.claude-memory-status-bar .stats {
+	display: flex;
+	gap: 12px;
+}
+
+.claude-memory-status-bar .stats .codicon {
+	margin-right: 4px;
+}
+
+/* ============================================
+   Claude Memory - Templates View
+   ============================================ */
+
+.claude-memory-templates-view {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.claude-templates-list {
+	flex: 1;
+	overflow-y: auto;
+	padding: 8px 0;
+}
+
+.claude-templates-section {
+	margin-bottom: 8px;
+}
+
+.claude-templates-section-header {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 16px;
+	font-size: 11px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	color: var(--vscode-sideBarSectionHeader-foreground);
+	background: var(--vscode-sideBarSectionHeader-background);
+}
+
+.claude-template-item {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 10px 16px;
+	cursor: pointer;
+	transition: background-color 0.15s ease;
+}
+
+.claude-template-item:hover,
+.claude-template-item.hover {
+	background: var(--vscode-list-hoverBackground);
+}
+
+.claude-template-icon {
+	width: 32px;
+	height: 32px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 8px;
+	background: var(--vscode-textBlockQuote-background);
+	color: var(--vscode-activityBarBadge-background);
+}
+
+.claude-template-info {
+	flex: 1;
+	min-width: 0;
+}
+
+.claude-template-name {
+	font-size: 12px;
+	font-weight: 500;
+	color: var(--vscode-foreground);
+}
+
+.claude-template-desc {
+	font-size: 11px;
+	color: var(--vscode-descriptionForeground);
+	margin-top: 2px;
+}
+
+.claude-template-actions {
+	display: flex;
+	gap: 4px;
+	opacity: 0;
+	transition: opacity 0.15s ease;
+}
+
+.claude-template-item:hover .claude-template-actions {
+	opacity: 1;
+}
+
+.claude-template-action {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	border: none;
+	border-radius: 6px;
+	background: transparent;
+	color: var(--vscode-foreground);
+	cursor: pointer;
+	transition: all 0.15s ease;
+}
+
+.claude-template-action:hover {
+	background: var(--vscode-toolbar-hoverBackground);
+}
+
+.claude-template-action.primary {
+	background: var(--vscode-button-background);
+	color: var(--vscode-button-foreground);
+}
+
+.claude-template-action.primary:hover {
+	background: var(--vscode-button-hoverBackground);
+}
+
+/* Preview Panel */
+.claude-templates-preview {
+	border-top: 1px solid var(--vscode-panel-border);
+	background: var(--vscode-editor-background);
+	max-height: 300px;
+	display: flex;
+	flex-direction: column;
+}
+
+.claude-preview-header {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 10px 16px;
+	background: var(--vscode-sideBarSectionHeader-background);
+	border-bottom: 1px solid var(--vscode-panel-border);
+}
+
+.claude-preview-header .name {
+	flex: 1;
+	font-weight: 500;
+}
+
+.claude-preview-header .close {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 24px;
+	height: 24px;
+	border: none;
+	border-radius: 4px;
+	background: transparent;
+	color: var(--vscode-foreground);
+	cursor: pointer;
+}
+
+.claude-preview-header .close:hover {
+	background: var(--vscode-toolbar-hoverBackground);
+}
+
+.claude-preview-content {
+	flex: 1;
+	margin: 0;
+	padding: 16px;
+	font-size: 11px;
+	font-family: var(--vscode-editor-font-family);
+	line-height: 1.5;
+	overflow: auto;
+	white-space: pre-wrap;
+}
+
+.claude-preview-actions {
+	display: flex;
+	gap: 8px;
+	padding: 12px 16px;
+	border-top: 1px solid var(--vscode-panel-border);
+}
+
+.claude-preview-btn {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	padding: 6px 12px;
+	border: 1px solid var(--vscode-panel-border);
+	border-radius: 6px;
+	background: transparent;
+	color: var(--vscode-foreground);
+	font-size: 12px;
+	cursor: pointer;
+}
+
+.claude-preview-btn:hover {
+	background: var(--vscode-toolbar-hoverBackground);
+}
+
+.claude-preview-btn.primary {
+	background: var(--vscode-button-background);
+	color: var(--vscode-button-foreground);
+	border-color: transparent;
+}
+
+.claude-preview-btn.primary:hover {
+	background: var(--vscode-button-hoverBackground);
+}
