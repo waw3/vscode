@@ -462,4 +462,7 @@ import './contrib/claudeMcp/browser/claudeMcp.contribution.js';
 // Claude Hooks System
 import './contrib/claudeHooks/browser/claudeHooks.contribution.js';
 
+// Claude Prompt Studio
+import './contrib/claudePromptStudio/browser/claudePromptStudio.contribution.js';
+
 //#endregion
